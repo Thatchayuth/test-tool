@@ -15,6 +15,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   async validate(payload: any) {
     // payload คือ object ที่เราเซ็นตอน login
     // คืนค่าที่จะ attach ไปใน request.user
-    return { userId: payload.userId, username: payload.username, role: payload.role };
+    return { userId: payload.userId, username: payload.username, role: payload.role ,exp: payload.exp};
   }
 }

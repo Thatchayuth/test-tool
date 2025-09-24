@@ -14,7 +14,7 @@ export class CreateRegisterDto {
     Email: string;
 
     @IsDate()
-    @Type(() => Date) 
+    @Type(() => Date)
     CreateUser: Date;
 
     @IsNumber()
@@ -37,27 +37,26 @@ export class CreateAddressDto {
     Province: number;
 
     @IsNumber()
-
     District: number;
 
     @IsNumber()
-
     Subdistrict: number;
+
 
     @IsNumber()
     Postalcode: number;
 
     @IsString()
-
     Phonenumber: string;
 
+    @Type(() => Number)
     @IsNumber()
-    lat: number; // ละติจูด (nullable ถ้ายังไม่คำนวณ)
+    lat: number=0; // ละติจูด (nullable ถ้ายังไม่คำนวณ)
+
+    @Type(() => Number)
+    @IsNumber()
+    lng: number =0;
 
     @IsNumber()
-    lng: number;
-
-    @IsNumber()
-
     Importance: number;
 } 

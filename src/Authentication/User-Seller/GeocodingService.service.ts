@@ -4,7 +4,6 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class GeocodingServiceService {
     private apiKey: string = "acfcd3fd265248359b3d29721527c15d";
-    
      async getCoordinates(address: string) {
     const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(
       address,

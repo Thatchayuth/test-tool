@@ -2,7 +2,7 @@
 https://docs.nestjs.com/controllers#controllers
 */
 
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards,Request  } from '@nestjs/common';
 import { LoginService } from './login.service';
 import { LoginDto } from 'src/dto/Login.dto';
 import { JwtAuthGuard } from 'src/JwtAuthGuard';
@@ -18,8 +18,9 @@ export class LoginController {
 
     @UseGuards(JwtAuthGuard)
     @Get('profile')
-    getProfile(req) {
-        console.log(req.user);
-        return req.user; // payload ที่ validate แล้ว
+    getProfile(@Request() req) {
+        console.log(req.user); // payload จาก JWT เช่น { userId: 1, username: 'test', role: 'admin' }
+        return req.user;
     }
 }
+

@@ -3,6 +3,7 @@ import { on } from 'events';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { AdressdeliveryEntityEntity } from './Adressdelivery-entity.entity';
 import { TokenEntityEntity } from '../Login/Token-entity.entity';
+import { ResetPasswordlogEntity } from '../Login/ResetPasswordlog.entity';
 
 @Entity('RegisterEntity')
 export class RegisterEntityEntity {
@@ -29,6 +30,9 @@ export class RegisterEntityEntity {
     @OneToMany(() => AdressdeliveryEntityEntity, (adressdelivery) => adressdelivery.register ,  { cascade: true })
     adressdelivery: AdressdeliveryEntityEntity[];
 
-    @OneToMany(() => TokenEntityEntity, (adressdelivery) => adressdelivery.User ,   { cascade: true })
+    @OneToMany(() => TokenEntityEntity, (Token) => Token.User ,   { cascade: true })
     Token: TokenEntityEntity[];
+
+    @OneToMany(() => ResetPasswordlogEntity, (ResetPasswordlog) => ResetPasswordlog.user ,   { cascade: true })
+    ResetPasswordlog: ResetPasswordlogEntity[];
 }

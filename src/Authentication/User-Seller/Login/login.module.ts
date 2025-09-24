@@ -11,6 +11,7 @@ import { LoginService } from './login.service';
 import { AdressdeliveryEntityEntity } from '../Register/Adressdelivery-entity.entity';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from 'src/jwt.strategy';
+import { ResetPasswordlogEntity } from './ResetPasswordlog.entity';
 
 
 @Module({
@@ -19,7 +20,7 @@ import { JwtStrategy } from 'src/jwt.strategy';
       secret: process.env.JWT_SECRET || 'SuperSecretKey123!',
       signOptions: { expiresIn: '1h' }, // กำหนดอายุ token
     }),
-    TypeOrmModule.forFeature([TokenEntityEntity, RegisterEntityEntity, AdressdeliveryEntityEntity])],
+    TypeOrmModule.forFeature([TokenEntityEntity, RegisterEntityEntity, AdressdeliveryEntityEntity, ResetPasswordlogEntity])],
   controllers: [LoginController],
   providers: [LoginService, JwtStrategy],
 })

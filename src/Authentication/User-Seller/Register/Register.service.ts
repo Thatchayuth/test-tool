@@ -42,11 +42,10 @@ export class RegisterService {
         for (const addr of dto.addresses) {
             if (addr.Adress) {
                 const coordinates = await this.geoService.getCoordinates(addr.Adress);
-                addr.lat = coordinates?.lat ?? null;
-                addr.lng = coordinates?.lng ?? null;
+                addr.lat = coordinates?.lat ?? 0;
+                addr.lng = coordinates?.lng ?? 0;
             }
         }
-
         // เข้ารหัสรหัสผ่าน
         const saltRounds = 10;
         dto.Password = await bcrypt.hash(dto.Password, saltRounds);
