@@ -9,30 +9,24 @@ export class RegisterEntityEntity {
     @PrimaryGeneratedColumn() id: number;
 
     @Column()
-    @IsString()
     Username: string;
 
     @Column()
-    @IsString()
     Password: string;
 
     @Column()
-    @IsEmail()
     Email: string;
 
     @Column()
-    @IsDate()
     CreateUser: Date;
 
     @Column( { nullable: true } )
-    @IsDate()
     UpdateUser: Date;
 
     @Column()
-    @IsNumber()
     Role: number;
 
-    @OneToMany(() => AdressdeliveryEntityEntity, (adressdelivery) => adressdelivery.register)
+    @OneToMany(() => AdressdeliveryEntityEntity, (adressdelivery) => adressdelivery.register ,  { cascade: true })
     adressdelivery: AdressdeliveryEntityEntity[];
 
     @OneToMany(() => TokenEntityEntity, (adressdelivery) => adressdelivery.User)

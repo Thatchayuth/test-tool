@@ -5,35 +5,41 @@ import { IsNumber } from 'class-validator';
 
 @Entity('AdressdeliveryEntity')
 export class AdressdeliveryEntityEntity {
-    @PrimaryGeneratedColumn() id:number;
+    @PrimaryGeneratedColumn() id: number;
 
-    @ManyToOne(() => RegisterEntityEntity, (register) => register.id)
+    @ManyToOne(() => RegisterEntityEntity, (register) => register.id , { onDelete: 'CASCADE' })
     register: RegisterEntityEntity;
 
-    @Column({ nullable: true , length: 900 })
+    @Column({ nullable: true, length: 900 })
     Adress: string;
 
     @Column()
-    @IsNumber()
+
     Province: number;
 
     @Column()
-    @IsNumber()
+
     District: number;
 
     @Column()
-    @IsNumber()
+
     Subdistrict: number;
 
     @Column()
-    @IsNumber()
+
     Postalcode: number;
 
     @Column()
-    @IsNumber()
+
     Phonenumber: number;
 
+    @Column({ type: 'float', nullable: true })
+    lat: number; // ละติจูด (nullable ถ้ายังไม่คำนวณ)
+
+    @Column({ type: 'float', nullable: true })
+    lng: number;
+
     @Column({ nullable: true })
-    @IsNumber()
+
     Importance: number;
 }
