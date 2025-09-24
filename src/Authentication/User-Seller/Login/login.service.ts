@@ -10,14 +10,14 @@ import { TokenEntityEntity } from './Token-entity.entity';
 import { AdressdeliveryEntityEntity } from '../Register/Adressdelivery-entity.entity';
 import { LoginDto, LoginResponseDto } from 'src/dto/Login.dto';
 import * as bcrypt from 'bcrypt';
-import { JwtService } from '@nestjs/jwt';
+import { randomBytes } from 'crypto';
 @Injectable()
 export class LoginService {
     constructor(
         @InjectRepository(RegisterEntityEntity) private Regisrepo: Repository<RegisterEntityEntity>,
         @InjectRepository(TokenEntityEntity) private Tokenrepo: Repository<TokenEntityEntity>,
         @InjectRepository(AdressdeliveryEntityEntity) private Addressrepo: Repository<AdressdeliveryEntityEntity>,
-        private readonly jwtService: JwtService,
+
     ) { }
 
     async Login(login: LoginDto) {
@@ -47,9 +47,8 @@ export class LoginService {
             );
         }
 
-        // generate JWT token
-        const payload = { userId: user.id, username: user.Username, role: user.Role };
-        const token = this.jwtService.sign(payload, { expiresIn: '1h' });
+        // generate  token
+        const token = randomBytes(32).toString('hex');
 
         // save token to database
         const expireDate = new Date();
@@ -58,6 +57,7 @@ export class LoginService {
             Token: token,
             ExpireDate: expireDate,
             User: user,
+            CreateDate: new Date(),
         });
         await this.Tokenrepo.save(tokenEntity);
 
