@@ -14,6 +14,6 @@ export class TokenEntityEntity {
     @Column()
     ExpireDate: Date;
 
-    @ManyToOne(() => RegisterEntityEntity, (token) => token.id)
+    @ManyToOne(() => RegisterEntityEntity, (token) => token.Token , { onDelete: 'CASCADE' })
     User: RegisterEntityEntity;
 }

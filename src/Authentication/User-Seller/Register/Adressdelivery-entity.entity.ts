@@ -7,7 +7,7 @@ import { IsNumber } from 'class-validator';
 export class AdressdeliveryEntityEntity {
     @PrimaryGeneratedColumn() id: number;
 
-    @ManyToOne(() => RegisterEntityEntity, (register) => register.id , { onDelete: 'CASCADE' })
+    @ManyToOne(() => RegisterEntityEntity, (register) => register.adressdelivery , { onDelete: 'CASCADE' })
     register: RegisterEntityEntity;
 
     @Column({ nullable: true, length: 900 })
@@ -31,7 +31,7 @@ export class AdressdeliveryEntityEntity {
 
     @Column()
 
-    Phonenumber: number;
+    Phonenumber: string;
 
     @Column({ type: 'float', nullable: true })
     lat: number; // ละติจูด (nullable ถ้ายังไม่คำนวณ)

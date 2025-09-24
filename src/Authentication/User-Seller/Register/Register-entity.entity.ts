@@ -29,6 +29,6 @@ export class RegisterEntityEntity {
     @OneToMany(() => AdressdeliveryEntityEntity, (adressdelivery) => adressdelivery.register ,  { cascade: true })
     adressdelivery: AdressdeliveryEntityEntity[];
 
-    @OneToMany(() => TokenEntityEntity, (adressdelivery) => adressdelivery.User)
+    @OneToMany(() => TokenEntityEntity, (adressdelivery) => adressdelivery.User ,   { cascade: true })
     Token: TokenEntityEntity[];
 }

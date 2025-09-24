@@ -1,12 +1,18 @@
+import { LoginModule } from './Authentication/User-Seller/Login/login.module';
+import { LoginService } from './Authentication/User-Seller/Login/login.service';
+import { LoginController } from './Authentication/User-Seller/Login/login.controller';
 import { RegisterModule } from './Authentication/User-Seller/Register/register.module';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GeocodingServiceService } from './Authentication/User-Seller/GeocodingService.service';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
+
+    LoginModule,
     RegisterModule, TypeOrmModule.forRoot({
       type: 'mssql',
       host: 'localhost',
@@ -22,7 +28,9 @@ import { GeocodingServiceService } from './Authentication/User-Seller/GeocodingS
       },
     }),
     RegisterModule],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [
+    AppController],
+  providers: [
+    AppService],
 })
 export class AppModule { }
