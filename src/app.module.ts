@@ -4,6 +4,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ProductContModule } from './Product/ProductCont.module';
 
 @Module({
   imports: [
@@ -23,7 +24,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         trustServerCertificate: true, // ใช้ตอน dev
       },
     }),
-    RegisterModule],
+    RegisterModule,
+    ProductContModule],
   controllers: [
     AppController],
   providers: [
